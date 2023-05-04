@@ -6,12 +6,19 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.xml.sax.SAXException;
+
+import procesamiento.Hotel;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -24,14 +31,17 @@ public class inicio extends JFrame implements ActionListener{
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField textFieldUsuario;
+	private JTextField textFieldContraseña;
 	
 	//Paneles secundarios que se desplegarán
 	private ventanaCrearUsuario  vCrearUsuario= new ventanaCrearUsuario();
 	private ventanaUsuario vUsuario;
-	private ventanaAdministrador vEmpleado;
-	private ventanaEmpleado vAdmin;
+	private ventanaAdministrador vAdmin;
+	private ventanaEmpleado vEmpleado;
+	
+	//Creación del procesamiento
+	private Hotel hotel;
 
 	/**
 	 * Launch the application.
@@ -51,8 +61,12 @@ public class inicio extends JFrame implements ActionListener{
 
 	/**
 	 * Create the frame.
+	 * @throws ParserConfigurationException 
+	 * @throws IOException 
+	 * @throws SAXException 
 	 */
-	public inicio() {
+	public inicio() throws SAXException, IOException, ParserConfigurationException {
+		hotel= new Hotel();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 716, 526);
 		contentPane = new JPanel();
@@ -63,13 +77,13 @@ public class inicio extends JFrame implements ActionListener{
 		JLabel lblNewLabel = new JLabel("Bienvenidos");
 		lblNewLabel.setFont(new Font("Stencil", Font.PLAIN, 18));
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+		textFieldUsuario = new JTextField();
+		textFieldUsuario.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Usuario");
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
+		textFieldContraseña = new JTextField();
+		textFieldContraseña.setColumns(10);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Contraseña");
 		
@@ -91,8 +105,8 @@ public class inicio extends JFrame implements ActionListener{
 						.addComponent(lblNewLabel_1))
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 169, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, 169, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textFieldContraseña, GroupLayout.PREFERRED_SIZE, 169, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textFieldUsuario, GroupLayout.PREFERRED_SIZE, 169, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(251, Short.MAX_VALUE))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap(292, Short.MAX_VALUE)
@@ -112,11 +126,11 @@ public class inicio extends JFrame implements ActionListener{
 					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textFieldUsuario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblNewLabel_1))
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textFieldContraseña, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblNewLabel_1_1))
 					.addGap(18)
 					.addComponent(btnIngresar)
@@ -135,7 +149,20 @@ public class inicio extends JFrame implements ActionListener{
 		if(grito.equals("Crear Usuario")) {
 			vCrearUsuario.main(null);
 		}
-		else {vCrearUsuario.main(null);}
+		else {
+			int tipoUsuario= hotel.ejecutarLogIn(textFieldUsuario.getText(), textFieldContraseña.getText());
+			if (tipoUsuario==1){
+				vAdmin.main(null);
+			}
+			else if (tipoUsuario==2){
+				vEmpleado.main(null);
+			}
+			else {
+				vUsuario.main(null);
+			}
+			
+			
+		}
 		
 	
 		
