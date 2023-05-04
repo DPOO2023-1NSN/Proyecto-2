@@ -1,13 +1,9 @@
 package modelo;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
 
-import org.xml.sax.SAXException;
 
 public class Informacion {
 	

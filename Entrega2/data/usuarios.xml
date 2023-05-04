@@ -5,16 +5,16 @@
     
     
     
-    <USUARIO contraseña="jajja" documento="131321" nombre="fafa" servicio="administracion" type="empleado" usuario="sergio"/>
+    <USUARIO contraseña="1" documento="131321" nombre="fafa" servicio="administracion" type="huesped" usuario="huesped"/>
                 
     
     
     
-    <USUARIO contraseña="jajja" documento="131321" nombre="fafa" servicio="administracion" type="empleado" usuario="sergio"/>
+    <USUARIO contraseña="1" documento="131321" nombre="fafa" servicio="administracion" type="empleado" usuario="empleado"/>
             
     
     
-    <USUARIO contraseña="jajja" documento="131321" nombre="fafa" servicio="administracion" type="empleado" usuario="sergio"/>
+    <USUARIO contraseña="1" documento="131321" nombre="fafa" servicio="administracion" type="administrador" usuario="admin"/>
         
     
     <USUARIO contraseña="jajja" documento="131321" nombre="fafa" servicio="administracion" type="empleado" usuario="sergio"/>
