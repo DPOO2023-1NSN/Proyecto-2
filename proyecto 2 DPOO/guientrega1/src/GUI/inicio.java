@@ -10,11 +10,14 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 
-public class inicio extends JFrame {
+public class inicio extends JFrame implements ActionListener{
 
 	/**
 	 * 
@@ -23,6 +26,12 @@ public class inicio extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
+	
+	//Paneles secundarios que se desplegarán
+	private ventanaCrearUsuario  vCrearUsuario= new ventanaCrearUsuario();
+	private ventanaUsuario vUsuario;
+	private ventanaAdministrador vEmpleado;
+	private ventanaEmpleado vAdmin;
 
 	/**
 	 * Launch the application.
@@ -64,9 +73,14 @@ public class inicio extends JFrame {
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Contraseña");
 		
-		JButton btnNewButton = new JButton("Ingresar");
+		JButton btnIngresar = new JButton("Ingresar");
+		btnIngresar.addActionListener(this);
+		btnIngresar.setActionCommand("Ingresar");
 		
 		JButton btnCrearUsuario = new JButton("Crear usuario");
+		btnCrearUsuario.addActionListener(this);
+		btnCrearUsuario.setActionCommand("Crear Usuario");
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
@@ -87,7 +101,7 @@ public class inicio extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap(299, Short.MAX_VALUE)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
-						.addComponent(btnNewButton, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(btnIngresar, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(btnCrearUsuario, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 					.addGap(294))
 		);
@@ -105,11 +119,25 @@ public class inicio extends JFrame {
 						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblNewLabel_1_1))
 					.addGap(18)
-					.addComponent(btnNewButton)
+					.addComponent(btnIngresar)
 					.addGap(11)
 					.addComponent(btnCrearUsuario)
 					.addContainerGap(167, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+
+		String grito = e.getActionCommand();
+		
+		if(grito.equals("Crear Usuario")) {
+			vCrearUsuario.main(null);
+		}
+		else {vCrearUsuario.main(null);}
+		
+	
+		
 	}
 }
