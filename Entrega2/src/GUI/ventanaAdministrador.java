@@ -24,7 +24,8 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class ventanaAdministrador extends JFrame implements ActionListener{
-	
+
+	private static final long serialVersionUID = 1L;
 	private Hotel hotel;
 	private JFrame panelCargarPreciosHabitaciones;
 	
@@ -42,16 +43,10 @@ public class ventanaAdministrador extends JFrame implements ActionListener{
 	 * Launch the application.
 	 */
 	public static void main(String[] args, Hotel hotel) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ventanaAdministrador frame = new ventanaAdministrador(hotel);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+				
+		ventanaAdministrador frame = new ventanaAdministrador(hotel);
+		frame.setVisible(true);
+			
 	}
 
 	/**
@@ -174,8 +169,7 @@ public class ventanaAdministrador extends JFrame implements ActionListener{
 		
 		if(grito.equals("Cargar precios de habitaciones")) {
 			
-			PanelCargarPreciosHabitaciones.main(null, hotel);
-			//panelCargarPreciosHabitaciones.setVisible(true);
+			//PanelCargarPreciosHabitaciones.main(null, hotel);
 	
 			panelConsultarHabitaciones.setVisible(false);
 			panelCrearHabitaciones.setVisible(false);
