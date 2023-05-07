@@ -1,29 +1,51 @@
 package GUI;
 
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import procesamiento.Hotel;
+import SubPaneles.PanelCargarPreciosHabitaciones;
+
 import javax.swing.JLabel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
+import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-public class ventanaAdministrador extends JFrame {
-
+public class ventanaAdministrador extends JFrame implements ActionListener{
+	
+	private Hotel hotel;
+	private JFrame panelCargarPreciosHabitaciones;
+	
 	private JPanel contentPane;
+	private JPanel panelConsultarHabitaciones= new JPanel();
+	private JPanel panelCrearHabitaciones= new JPanel();
+	private JPanel panelCargarArchivoHabitaciones= new JPanel();
+	
+	private JPanel panelconsultarHabitaciones= new JPanel();
+	private JPanel panelCargarMenu= new JPanel();
+	private JPanel panelEditarMenu= new JPanel();
+	private JPanel panelAsignarPreciosMenu= new JPanel();
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args, Hotel hotel) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ventanaAdministrador frame = new ventanaAdministrador();
+					ventanaAdministrador frame = new ventanaAdministrador(hotel);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -35,10 +57,16 @@ public class ventanaAdministrador extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ventanaAdministrador() {
+	public ventanaAdministrador(Hotel hotel) {
+		
+	//PENDIENTE
+		this.hotel= hotel;
+
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 956, 705);
 		contentPane = new JPanel();
+		
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
@@ -46,7 +74,7 @@ public class ventanaAdministrador extends JFrame {
 		JLabel lblNewLabel = new JLabel("Bienvenido administrador ");
 		lblNewLabel.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Menú habitaciones");
+		JLabel lblNewLabel_1_1 = new JLabel("MenÃº habitaciones");
 		lblNewLabel_1_1.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
 		
 		JButton btnConsultarHabitaciones = new JButton("Consultar habitaciones");
@@ -60,17 +88,19 @@ public class ventanaAdministrador extends JFrame {
 		
 		JButton btnCargarPreciosDe = new JButton("Cargar precios de Habitaciones ");
 		btnCargarPreciosDe.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
+		btnCargarPreciosDe.addActionListener(this);
+		btnCargarPreciosDe.setActionCommand("Cargar precios de habitaciones");
 		
-		JLabel lblNewLabel_1_1_1 = new JLabel("       Opciones menú");
+		JLabel lblNewLabel_1_1_1 = new JLabel("       Opciones menÃº");
 		lblNewLabel_1_1_1.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
 		
-		JButton btnCargarMen = new JButton("Cargar menú");
+		JButton btnCargarMen = new JButton("Cargar menÃº");
 		btnCargarMen.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
 		
-		JButton btnEditarMen = new JButton("Editar menú");
+		JButton btnEditarMen = new JButton("Editar menÃº");
 		btnEditarMen.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
 		
-		JButton btnAsignarPreciosAl = new JButton("Asignar precios al menú");
+		JButton btnAsignarPreciosAl = new JButton("Asignar precios al menÃº");
 		btnAsignarPreciosAl.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
@@ -128,5 +158,33 @@ public class ventanaAdministrador extends JFrame {
 					.addContainerGap(376, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
+		
+		
+		
+	}
+	
+	//CREACIÃ“N DE SUBPANELES
+	//PANEL CARGAR PRECIOS HABITACIONES
+
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+	String grito = e.getActionCommand();
+		
+		if(grito.equals("Cargar precios de habitaciones")) {
+			
+			PanelCargarPreciosHabitaciones.main(null, hotel);
+			//panelCargarPreciosHabitaciones.setVisible(true);
+	
+			panelConsultarHabitaciones.setVisible(false);
+			panelCrearHabitaciones.setVisible(false);
+			panelCargarArchivoHabitaciones.setVisible(false);
+			panelconsultarHabitaciones.setVisible(false);
+			panelCargarMenu.setVisible(false);
+			panelEditarMenu.setVisible(false);
+			panelAsignarPreciosMenu.setVisible(false);
+		}
+		
 	}
 }
