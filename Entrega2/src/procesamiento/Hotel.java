@@ -53,15 +53,15 @@ public class Hotel {
 	}
 	public void registrarAdmin(String nombreUsuario, String contraseña, String nombre, String documento){
 		Administrador admin= new Administrador(nombreUsuario, contraseña, nombre, documento);
-		listaUsuarios.get(0).getinfo().addUsuario(admin);
+		informacion.addUsuario(admin);
 	}
 	public void registrarEmpleado(String nombreUsuario, String contraseña, String nombre, String documento, String servicioEncargado){
 		Empleado empleado= new Empleado (nombreUsuario, contraseña, nombre, documento, servicioEncargado);
-		listaUsuarios.get(0).getinfo().addUsuario(empleado);
+		informacion.addUsuario(empleado);
 	}
 	public void registrarHuesped(String nombreUsuario, String contraseña, String nombre, String documento, int edad, String correo, String telefono ){
 		Huesped huesped= new Huesped (nombreUsuario, contraseña, nombre, documento, edad, correo, telefono );
-		listaUsuarios.get(0).getinfo().addUsuario(huesped);
+		informacion.addUsuario(huesped);
 	}
 
 	//FUNCCIONES ADMIN

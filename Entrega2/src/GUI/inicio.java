@@ -26,9 +26,8 @@ import javax.swing.JButton;
 
 public class inicio extends JFrame implements ActionListener{
 
-	/**
-	 * 
-	 */
+	private static final long serialVersionUID = 1L;
+	
 	private JPanel contentPane;
 	private JPanel usuarioPanel;
 	private JPanel botonesPanel;
@@ -43,7 +42,7 @@ public class inicio extends JFrame implements ActionListener{
 	private JLabel incJLabel;
 	
 	//Paneles secundarios que se desplegarán
-	private ventanaCrearUsuario  vCrearUsuario= new ventanaCrearUsuario();
+	private JPanel  panelCrearUsuario;
 	private ventanaUsuario vUsuario;
 	private ventanaAdministrador vAdmin;
 	private ventanaEmpleado vEmpleado;
@@ -54,9 +53,8 @@ public class inicio extends JFrame implements ActionListener{
 
 	public static void main(String[] args) {
 		
+		new inicio();
 		
-		inicio frame = new inicio();
-		frame.setVisible(true);
 	}
 
 	
@@ -67,6 +65,9 @@ public class inicio extends JFrame implements ActionListener{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		panelCrearUsuario = new PanelCrearUsuario(hotel, this);
+		
 		
 		// Configuracion JFrame
 		setBounds(100, 100, 716, 526);
@@ -132,8 +133,15 @@ public class inicio extends JFrame implements ActionListener{
 		add(contentPane);
 		
 		
+		
 	}
-
+	
+	public void volverLogin() {
+		remove(panelCrearUsuario);
+	    add(contentPane);
+	    revalidate();
+	    repaint();
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -141,11 +149,14 @@ public class inicio extends JFrame implements ActionListener{
 		String accion = e.getActionCommand();
 		
 		if(accion.equals("Crear")) {
-			vCrearUsuario.main(null);
+			remove(contentPane);
+		    add(panelCrearUsuario);
+		    revalidate();
+		    repaint();
+			
 		}
 		else {
 			int tipoUsuario= hotel.ejecutarLogIn(usuarioField.getText(), contraseñaField.getText());
-			System.out.println(tipoUsuario);
 			if (tipoUsuario==0)
 				incJLabel.setVisible(true);
 			else if (tipoUsuario==1){

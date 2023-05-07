@@ -1,191 +1,278 @@
 package GUI;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
+
+import procesamiento.Hotel;
+
 import javax.swing.JLabel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
+
 import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JTextField;
 
-public class ventanaCrearUsuario extends JFrame {
+public class PanelCrearUsuario extends JPanel implements ActionListener{
 
-	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ventanaCrearUsuario frame = new ventanaCrearUsuario();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	private static final long serialVersionUID = 1L;
+	
+	private String opcSeleccionada = "huesped";
+	private Hotel hotel;
+	private GUI.inicio inicio;
+
+	private JPanel panelSuperior;
+	private JPanel panelMitad;
+	private JPanel panelInferior;
+	
+	private JLabel lblTitle;
+	private JLabel lblQueTipoDe;
+	private JButton btnAdmin;
+	private JButton btnEmpleado;
+	private JButton btnHuesped;
+	private JButton btnConfirmacion;
+	
+	private JLabel lblNombreDeUsuario;
+	private JLabel lblContraseña;
+	private JLabel lblNombre;
+	private JLabel lblDocumento;
+	private JLabel lblServicioEncargado;
+	private JLabel lblCorreoElectrnico;
+	private JLabel lblTelfono;
+	private JLabel lblEdad;
+	private JLabel lblConfirmacion;
+	
+	private JTextField txtUsuario;
+	private JTextField txtContraseña;
+	private JTextField txtNombre;
+	private JTextField txtDocumento;
+	private JTextField txtServicio;
+	private JTextField txtCorreo;
+	private JTextField txtTelefono;
+	private JTextField txtEdad;
+	
+
+
+	public PanelCrearUsuario(Hotel hotel, GUI.inicio inicio) {
+		this.hotel = hotel;
+		this.inicio = inicio;
+		
+		// Configuracion panel
+		setLayout(new BorderLayout());
+		setBounds(60, 10, 600, 480);
+		
+		// Creacion de paneles hijos
+		crearPanelSuperior();
+		add(panelSuperior, BorderLayout.NORTH);
+		
+		crearPanelMitad();
+		add(panelMitad, BorderLayout.CENTER);
+		
+		crearPanelInferior();
+		add(panelInferior, BorderLayout.SOUTH);
+		
+		
+		
+		
 	}
-
-	/**
-	 * Create the frame.
-	 */
-	public ventanaCrearUsuario() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1131, 728);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		setContentPane(contentPane);
+	
+	private void crearPanelSuperior() {
+		// Configuracion panel
+		panelSuperior = new JPanel();
+		panelSuperior.setPreferredSize(new Dimension(700,60));
 		
-		JLabel lblNewLabel = new JLabel("Crear usuario ");
-		lblNewLabel.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
+		// Creacion de componentes
+		lblTitle = new JLabel("Crear usuario ");
+		lblTitle.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
 		
-		JLabel lblQueTipoDe = new JLabel("Que tipo de usuario desea crear?");
+		//Agregacion de componentes
+		panelSuperior.add(lblTitle);
+	}
+	
+	private void crearPanelMitad() {
+		// Configuracion panel
+		panelMitad = new JPanel();
+		panelMitad.setPreferredSize(new Dimension(600,20));
+		
+		// Creacion de componentes
+		lblQueTipoDe = new JLabel("Que tipo de usuario desea crear?");
 		lblQueTipoDe.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
 		
-		JButton btnNewButton = new JButton("Administrador");
-		btnNewButton.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
-		
-		JButton btnEmpleado = new JButton("Empleado");
+		btnAdmin = new JButton("Administrador");
+		btnAdmin.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
+		btnAdmin.addActionListener(this);
+		btnAdmin.setActionCommand("admin");
+
+		btnEmpleado = new JButton("Empleado");
 		btnEmpleado.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
+		btnEmpleado.addActionListener(this);
+		btnEmpleado.setActionCommand("empleado");
 		
-		JButton btnHuesped = new JButton("Huesped");
+		btnHuesped = new JButton("Huesped");
 		btnHuesped.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
+		btnHuesped.addActionListener(this);
+		btnHuesped.setActionCommand("huesped");
 		
-		JLabel lblNombreDeUsuario = new JLabel("Nombre de Usuario:");
+		//Agregacion de componentes
+		panelMitad.add(lblQueTipoDe);
+		panelMitad.add(btnAdmin);
+		panelMitad.add(btnEmpleado);
+		panelMitad.add(btnHuesped);
+	}
+	
+	private void crearPanelInferior() {
+		// Configuracion panel
+		panelInferior = new JPanel();
+		panelInferior.setPreferredSize(new Dimension(600,340));
+		panelInferior.setLayout(new GridLayout(9,2,10,10));
+		
+		// Creacion de componentes
+		lblNombreDeUsuario = new JLabel("Nombre de Usuario:");
 		lblNombreDeUsuario.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+		txtUsuario = new JTextField();
 		
-		JLabel lblContrasea = new JLabel("Contraseña:");
-		lblContrasea.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
+		lblContraseña = new JLabel("Contraseña:");
+		lblContraseña.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
+		txtContraseña = new JTextField();
 		
-		JLabel lblNombreDelAdministrador = new JLabel("Nombre del administrador:");
-		lblNombreDelAdministrador.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
+		lblNombre = new JLabel("Nombre:");
+		lblNombre.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
+		txtNombre = new JTextField();
 		
-		JLabel lblDocumento = new JLabel("Documento:");
+		lblDocumento = new JLabel("Documento:");
 		lblDocumento.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
+		txtDocumento = new JTextField();
 		
-		JLabel lblServicioEncargado = new JLabel("Servicio encargado:");
+		lblServicioEncargado = new JLabel("Servicio encargado:");
 		lblServicioEncargado.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
+		txtServicio = new JTextField();
 		
-		JLabel lblCorreoElectrnico = new JLabel("Correo electrónico:");
+		lblCorreoElectrnico = new JLabel("Correo electrónico:");
 		lblCorreoElectrnico.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
+		txtCorreo = new JTextField();
 		
-		JLabel lblTelfono = new JLabel("teléfono:");
+		lblTelfono = new JLabel("teléfono:");
 		lblTelfono.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(501)
-							.addComponent(lblNewLabel))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(54)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(lblQueTipoDe)
-									.addGap(18)
-									.addComponent(btnNewButton)
-									.addGap(18)
-									.addComponent(btnEmpleado, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
-									.addComponent(btnHuesped, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-										.addComponent(lblContrasea, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblNombreDeUsuario, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblNombreDelAdministrador, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblDocumento, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblServicioEncargado, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblCorreoElectrnico, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblTelfono, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE))
-									.addGap(18)
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, 213, GroupLayout.PREFERRED_SIZE)
-										.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, 213, GroupLayout.PREFERRED_SIZE)
-										.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 213, GroupLayout.PREFERRED_SIZE)
-										.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 213, GroupLayout.PREFERRED_SIZE)
-										.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 213, GroupLayout.PREFERRED_SIZE)
-										.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 213, GroupLayout.PREFERRED_SIZE)
-										.addComponent(textField, GroupLayout.PREFERRED_SIZE, 213, GroupLayout.PREFERRED_SIZE))))))
-					.addContainerGap(472, Short.MAX_VALUE))
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblNewLabel)
-					.addGap(35)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblQueTipoDe, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnNewButton)
-						.addComponent(btnEmpleado, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnHuesped, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
-					.addGap(54)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNombreDeUsuario, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(35)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblContrasea, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE))
-					.addGap(36)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNombreDelAdministrador, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(48)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblDocumento, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(56)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblServicioEncargado, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(61)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblCorreoElectrnico, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(54)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblTelfono, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(98, Short.MAX_VALUE))
-		);
-		contentPane.setLayout(gl_contentPane);
+		txtTelefono = new JTextField();
+		
+		lblEdad = new JLabel("Edad:");
+		lblEdad.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
+		
+		txtEdad = new JTextField();
+		
+		lblConfirmacion = new JLabel("");
+		lblConfirmacion.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
+		
+		btnConfirmacion = new JButton("Crear");
+		btnConfirmacion.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
+		btnConfirmacion.addActionListener(this);
+		btnConfirmacion.setActionCommand("crear");
+		
+		//Bloquea las casillas de texto
+		txtUsuario.setEditable(false);
+		txtContraseña.setEditable(false);
+		txtNombre.setEditable(false);
+		txtDocumento.setEditable(false);
+		txtServicio.setEditable(false);
+		txtCorreo.setEditable(false);
+		txtTelefono.setEditable(false);
+		txtEdad.setEditable(false);
+		btnConfirmacion.setEnabled(false);
+		
+		//Agregacion de componentes
+		panelInferior.add(lblNombreDeUsuario);
+		panelInferior.add(txtUsuario);
+		panelInferior.add(lblContraseña);
+		panelInferior.add(txtContraseña);
+		panelInferior.add(lblNombre);
+		panelInferior.add(txtNombre);
+		panelInferior.add(lblDocumento);
+		panelInferior.add(txtDocumento);
+		panelInferior.add(lblServicioEncargado);
+		panelInferior.add(txtServicio);
+		panelInferior.add(lblCorreoElectrnico);
+		panelInferior.add(txtCorreo);
+		panelInferior.add(lblTelfono);
+		panelInferior.add(txtTelefono);
+		panelInferior.add(lblEdad);
+		panelInferior.add(txtEdad);
+		panelInferior.add(lblConfirmacion);
+		panelInferior.add(btnConfirmacion);
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String accion = e.getActionCommand();
+		
+		if(accion.equals("admin")) {
+			lblConfirmacion.setText("¿Desea crear un administrador?");
+			opcSeleccionada = accion;
+			//Bloquea las casillas de texto
+			txtUsuario.setEditable(true);
+			txtContraseña.setEditable(true);
+			txtNombre.setEditable(true);
+			txtDocumento.setEditable(true);
+			txtServicio.setEditable(false);
+			txtCorreo.setEditable(false);
+			txtTelefono.setEditable(false);
+			txtEdad.setEditable(false);
+			btnConfirmacion.setEnabled(true);
+		}
+		else if(accion.equals("empleado")) {
+			lblConfirmacion.setText("¿Desea crear un empleado?");
+			opcSeleccionada = accion;
+			//Bloquea y desbloquea las casillas de texto
+			txtUsuario.setEditable(true);
+			txtContraseña.setEditable(true);
+			txtNombre.setEditable(true);
+			txtDocumento.setEditable(true);
+			txtServicio.setEditable(true);
+			txtCorreo.setEditable(false);
+			txtTelefono.setEditable(false);
+			txtEdad.setEditable(false);
+			btnConfirmacion.setEnabled(true);
+		}
+		else if(accion.equals("huesped")) {
+			lblConfirmacion.setText("¿Desea crear un huesped?");
+			opcSeleccionada = accion;
+			//Bloquea y desbloquea las casillas de texto
+			txtUsuario.setEditable(true);
+			txtContraseña.setEditable(true);
+			txtNombre.setEditable(true);
+			txtDocumento.setEditable(true);
+			txtServicio.setEditable(true);
+			txtCorreo.setEditable(true);
+			txtTelefono.setEditable(true);
+			txtEdad.setEditable(true);
+			btnConfirmacion.setEnabled(true);
+		}
+		
+		else if(accion.equals("crear")) {
+			if(opcSeleccionada.equals("admin")) {
+				hotel.registrarAdmin(txtUsuario.getText(), txtContraseña.getText(), txtNombre.getText(), txtDocumento.getText());
+			}
+			else if(opcSeleccionada.equals("empleado")) {
+				hotel.registrarEmpleado(txtUsuario.getText(), txtContraseña.getText(), txtNombre.getText(), txtDocumento.getText(), txtServicio.getText());
+			}
+			else if(opcSeleccionada.equals("huesped")) {
+				hotel.registrarHuesped(txtUsuario.getText(), txtContraseña.getText(), txtNombre.getText(), txtDocumento.getText(), Integer.parseInt(txtEdad.getText()), txtCorreo.getText(), txtTelefono.getText());
+			}
+			inicio.volverLogin();
+		}
+		
 	}
 }
