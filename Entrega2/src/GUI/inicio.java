@@ -160,7 +160,7 @@ public class inicio extends JFrame implements ActionListener{
 			if (tipoUsuario==0)
 				incJLabel.setVisible(true);
 			else if (tipoUsuario==1){
-				vAdmin.main(null);
+				vAdmin.main(null, hotel);
 			}
 			else if (tipoUsuario==2){
 				vEmpleado.main(null);

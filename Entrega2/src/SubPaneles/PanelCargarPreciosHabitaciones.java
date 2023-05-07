@@ -30,23 +30,19 @@ public class PanelCargarPreciosHabitaciones extends JFrame implements ActionList
 		setTitle("Cargar Precios de habitaciones");
 		setResizable(true);
 		setVisible(true);
-		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		setPreferredSize(new Dimension (800,600));
 		
-		setLayout(new GridLayout(6,1));
+		setLayout(new GridLayout(5,1));
 		
 		JPanel panelNorte= new JPanel();
-		panelNorte.setLayout(new FlowLayout());
-		panelNorte.setPreferredSize(new Dimension (800,300));
 		
 		JPanel panelMedio1= new JPanel();
-		panelMedio1.setLayout(new FlowLayout());
+		
 		JPanel panelMedio2= new JPanel();
-		panelMedio2.setLayout(new FlowLayout());
+
 		JPanel panelSur= new JPanel();
-		panelSur.setLayout(new FlowLayout());
+
 		
 		JLabel LTipoHab= new JLabel("Tipo de habitación:");
 		LTipoHab.setPreferredSize(new Dimension (200,50));
@@ -59,8 +55,10 @@ public class PanelCargarPreciosHabitaciones extends JFrame implements ActionList
 		
 		JLabel diaI= new JLabel("Día inicial:");
 		diaI.setPreferredSize(new Dimension (100,50));
+		
 		JTextField tfDiaI= new JTextField();
 		tfDiaI.setPreferredSize(new Dimension (100,50));
+		
 		JLabel diaSemanaI= new JLabel("Día de la semana inicial:");
 		diaSemanaI.setPreferredSize(new Dimension (200,50));
 		
@@ -76,15 +74,19 @@ public class PanelCargarPreciosHabitaciones extends JFrame implements ActionList
 		
 		JLabel mesI= new JLabel("Mes inicial:");
 		mesI.setPreferredSize(new Dimension (100,50));
+		
 		JTextField tfMesI= new JTextField();
 		tfMesI.setPreferredSize(new Dimension (100,50));
 		
 		JLabel diaF= new JLabel("Día final:");
 		diaF.setPreferredSize(new Dimension (100,50));
+		
 		JTextField tfDiaF= new JTextField();
 		tfDiaF.setPreferredSize(new Dimension (100,50));
+		
 		JLabel diaSemanaF= new JLabel("Día de la semana final:");
 		diaSemanaF.setPreferredSize(new Dimension (200,50));
+		
 		JComboBox<String> tfDiaSemanaF= new JComboBox();
 		tfDiaSemanaF.addItem("Lunes");
 		tfDiaSemanaF.addItem("Martes");
@@ -94,13 +96,16 @@ public class PanelCargarPreciosHabitaciones extends JFrame implements ActionList
 		tfDiaSemanaF.addItem("Sábado");
 		tfDiaSemanaF.addItem("Domingo");
 		tfDiaSemanaF.setPreferredSize(new Dimension (100,50));
+		
 		JLabel mesF= new JLabel("Mes final:");
 		mesF.setPreferredSize(new Dimension (100,50));
+		
 		JTextField tfMesF= new JTextField();
 		tfMesF.setPreferredSize(new Dimension (100,50));
 		
 		JLabel precio= new JLabel("Precio:");
 		precio.setPreferredSize(new Dimension (200,50));
+		
 		JTextField tfPrecio= new JTextField();
 		tfPrecio.setPreferredSize(new Dimension (100,50));
 		
@@ -112,7 +117,7 @@ public class PanelCargarPreciosHabitaciones extends JFrame implements ActionList
 		botonCambiar.addActionListener(this);
 		botonCambiar.setActionCommand("cambiar");
 		
-		JLabel labelAvisos= new JLabel("                                                   ");
+		JLabel labelAvisos= new JLabel("");
 		panelSur2.add(botonCambiar);
 		panelSur2.add(labelAvisos);
 		
@@ -142,7 +147,7 @@ public class PanelCargarPreciosHabitaciones extends JFrame implements ActionList
 		add(panelSur);
 		add(panelSur2);
 		
-		
+		pack();
 	}
 	
 	public static void main(String[] args) {
