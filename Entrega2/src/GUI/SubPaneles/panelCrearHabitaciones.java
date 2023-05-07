@@ -1,4 +1,4 @@
-package SubPaneles;
+package GUI.SubPaneles;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
