@@ -27,10 +27,12 @@ public class ventanaAdministrador extends JFrame implements ActionListener{
 	
 	private Hotel hotel;
 	private JFrame panelCargarPreciosHabitaciones;
+	private JPanel panelCrearHabitaciones= new JPanel();
+	
 	
 	private JPanel contentPane;
 	private JPanel panelConsultarHabitaciones= new JPanel();
-	private JPanel panelCrearHabitaciones= new JPanel();
+	
 	private JPanel panelCargarArchivoHabitaciones= new JPanel();
 	
 	private JPanel panelconsultarHabitaciones= new JPanel();
@@ -174,7 +176,7 @@ public class ventanaAdministrador extends JFrame implements ActionListener{
 		
 		if(grito.equals("Cargar precios de habitaciones")) {
 			
-			PanelCargarPreciosHabitaciones.main(null, hotel);
+			PanelCargarPreciosHabitaciones.main(null);
 			//panelCargarPreciosHabitaciones.setVisible(true);
 	
 			panelConsultarHabitaciones.setVisible(false);
