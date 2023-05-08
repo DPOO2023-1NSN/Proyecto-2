@@ -8,6 +8,8 @@ import javax.swing.border.EmptyBorder;
 import GUI.SubPaneles.PanelCancelarReserva;
 import GUI.SubPaneles.PanelConsultarHabitaciones;
 import GUI.SubPaneles.PanelRegistrarCobros;
+import GUI.SubPaneles.RealizarCheckIn;
+import GUI.SubPaneles.RealizarCheckOut;
 import GUI.SubPaneles.ReservasFrame;
 import procesamiento.Hotel;
 
@@ -59,9 +61,13 @@ public class ventanaEmpleado extends JFrame implements ActionListener{
 		
 		JButton btnConsultarPagos_1_1 = new JButton("Registrar check in ");
 		btnConsultarPagos_1_1.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
+		btnConsultarPagos_1_1.addActionListener(this);
+		btnConsultarPagos_1_1.setActionCommand("checkIn");
 		
 		JButton btnConsultarPagos_1_1_1 = new JButton("Registrar check out");
 		btnConsultarPagos_1_1_1.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
+		btnConsultarPagos_1_1_1.addActionListener(this);
+		btnConsultarPagos_1_1_1.setActionCommand("checkOut");
 		
 		JButton btnConsultarPagos_1_1_1_1 = new JButton("Consultar habitaciones");
 		btnConsultarPagos_1_1_1_1.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
@@ -128,6 +134,11 @@ public class ventanaEmpleado extends JFrame implements ActionListener{
 		
 		else if (accion.equals("registrar"))
 			new PanelRegistrarCobros(hotel);
+		
+		else if (accion.equals("checkIn"))
+			new RealizarCheckIn();
+		else if (accion.equals("checkOut"))
+			new RealizarCheckOut();
 		
 		dispose();
 		
