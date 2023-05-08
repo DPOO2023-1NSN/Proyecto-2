@@ -8,8 +8,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import GUI.SubPaneles.PanelConsultarHabitaciones;
 import procesamiento.Hotel;
-import SubPaneles.PanelCargarPreciosHabitaciones;
+
 
 import javax.swing.JLabel;
 import javax.swing.GroupLayout;
@@ -29,6 +30,7 @@ public class ventanaAdministrador extends JFrame implements ActionListener{
 	private Hotel hotel;
 	private JFrame panelCargarPreciosHabitaciones;
 	private JPanel panelCrearHabitaciones= new JPanel();
+	private PanelConsultarHabitaciones panelConsultarH;
 	
 	
 	private JPanel contentPane;
@@ -41,26 +43,21 @@ public class ventanaAdministrador extends JFrame implements ActionListener{
 	private JPanel panelEditarMenu= new JPanel();
 	private JPanel panelAsignarPreciosMenu= new JPanel();
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args, Hotel hotel) {
-				
-		ventanaAdministrador frame = new ventanaAdministrador(hotel);
-		frame.setVisible(true);
-			
-	}
+
+
 
 	/**
 	 * Create the frame.
 	 */
 	public ventanaAdministrador(Hotel hotel) {
 		
+		setVisible(true);
 	//PENDIENTE
 		this.hotel= hotel;
+		
 
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 956, 705);
 		contentPane = new JPanel();
 		
@@ -76,6 +73,8 @@ public class ventanaAdministrador extends JFrame implements ActionListener{
 		
 		JButton btnConsultarHabitaciones = new JButton("Consultar habitaciones");
 		btnConsultarHabitaciones.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
+		btnConsultarHabitaciones.addActionListener(this);
+		btnConsultarHabitaciones.setActionCommand("ConsultarH");
 		
 		JButton btnCrearHabitaciones = new JButton("Crear habitaciones");
 		btnCrearHabitaciones.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
@@ -171,12 +170,7 @@ public class ventanaAdministrador extends JFrame implements ActionListener{
 		
 		if(grito.equals("Cargar precios de habitaciones")) {
 			
-<<<<<<< HEAD
-			PanelCargarPreciosHabitaciones.main(null);
-			//panelCargarPreciosHabitaciones.setVisible(true);
-=======
-			//PanelCargarPreciosHabitaciones.main(null, hotel);
->>>>>>> branch 'main' of https://github.com/DPOO2023-1NSN/Proyecto-2.git
+
 	
 			panelConsultarHabitaciones.setVisible(false);
 			panelCrearHabitaciones.setVisible(false);
@@ -185,6 +179,12 @@ public class ventanaAdministrador extends JFrame implements ActionListener{
 			panelCargarMenu.setVisible(false);
 			panelEditarMenu.setVisible(false);
 			panelAsignarPreciosMenu.setVisible(false);
+		}
+		
+		else if(grito.equals("ConsultarH")) {
+			new PanelConsultarHabitaciones(hotel);
+			dispose();
+		    
 		}
 		
 	}

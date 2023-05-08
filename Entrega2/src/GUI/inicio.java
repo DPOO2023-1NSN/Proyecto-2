@@ -44,7 +44,7 @@ public class inicio extends JFrame implements ActionListener{
 	//Paneles secundarios que se desplegarán
 	private JPanel  panelCrearUsuario;
 	private ventanaUsuario vUsuario;
-	private ventanaAdministrador vAdmin;
+	//private ventanaAdministrador vAdmin;
 	private ventanaEmpleado vEmpleado;
 	
 	//Creación del procesamiento
@@ -160,7 +160,7 @@ public class inicio extends JFrame implements ActionListener{
 			if (tipoUsuario==0)
 				incJLabel.setVisible(true);
 			else if (tipoUsuario==1){
-				vAdmin.main(null, hotel);
+				new ventanaAdministrador(hotel);
 			}
 			else if (tipoUsuario==2){
 				vEmpleado.main(null);
