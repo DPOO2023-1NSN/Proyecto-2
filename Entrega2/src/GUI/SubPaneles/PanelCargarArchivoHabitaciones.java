@@ -2,15 +2,26 @@ package GUI.SubPaneles;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.*;
 
+import GUI.ventanaAdministrador;
+import GUI.ventanaEmpleado;
+import procesamiento.Hotel;
+
 public class PanelCargarArchivoHabitaciones extends JFrame {
-    public PanelCargarArchivoHabitaciones() {
+	
+	private Hotel hotel;
+	
+    public PanelCargarArchivoHabitaciones(Hotel hotel) {
+    	this.hotel = hotel;
+    	
+    	setVisible(true);
         setTitle("PanelCargarArchivoHabitaciones");
         setSize(800, 200);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         // Creamos los componentes
         JLabel labelRuta = new JLabel("Ingrese la ruta del archivo:");
@@ -38,10 +49,15 @@ public class PanelCargarArchivoHabitaciones extends JFrame {
         botonCargar.addActionListener(e -> {
             labelArchivoCargado.setText("Archivo de habitaciones cargado con éxito");
         });
+        
+     // Evento de cierre
+     addWindowListener(new WindowAdapter() {
+     @Override
+     public void windowClosing(WindowEvent e) {
+    	 new ventanaAdministrador(hotel);
+    	 dispose();
+     }
+     });
     }
 
-    public static void main(String[] args) {
-        PanelCargarArchivoHabitaciones panel = new PanelCargarArchivoHabitaciones();
-        panel.setVisible(true);
-    }
 }

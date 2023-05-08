@@ -79,7 +79,6 @@ public class PanelCrearUsuario extends JPanel implements ActionListener{
 		
 		
 		
-		
 	}
 	
 	private void crearPanelSuperior() {

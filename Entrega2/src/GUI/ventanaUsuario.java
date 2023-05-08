@@ -50,7 +50,7 @@ public class ventanaUsuario extends JFrame {
 		JLabel lblNewLabel = new JLabel("Hotel Cartago");
 		lblNewLabel.setFont(new Font("Palatino Linotype", Font.PLAIN, 14));
 		
-		JLabel lblNewLabel_1 = new JLabel("Nicolas Ardila");
+		JLabel lblNewLabel_1 = new JLabel();
 		
 		JButton btnNewButton = new JButton("Realizar Reserva");
 		btnNewButton.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));

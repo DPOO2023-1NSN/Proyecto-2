@@ -8,6 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import GUI.SubPaneles.PanelCargarArchivoHabitaciones;
+import GUI.SubPaneles.PanelCargarPreciosHabitaciones;
 import GUI.SubPaneles.PanelConsultarHabitaciones;
 import procesamiento.Hotel;
 
@@ -81,11 +83,12 @@ public class ventanaAdministrador extends JFrame implements ActionListener{
 		
 		JButton btnCargarArchivoDe = new JButton("Cargar archivo de habitaciones");
 		btnCargarArchivoDe.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
-		
+		btnCargarArchivoDe.addActionListener(this);
+		btnCargarArchivoDe.setActionCommand("cargarAH");
 		JButton btnCargarPreciosDe = new JButton("Cargar precios de Habitaciones ");
 		btnCargarPreciosDe.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
 		btnCargarPreciosDe.addActionListener(this);
-		btnCargarPreciosDe.setActionCommand("Cargar precios de habitaciones");
+		btnCargarPreciosDe.setActionCommand("cargarPH");
 		
 		JLabel lblNewLabel_1_1_1 = new JLabel("       Opciones menÃº");
 		lblNewLabel_1_1_1.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
@@ -166,26 +169,20 @@ public class ventanaAdministrador extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-	String grito = e.getActionCommand();
-		
-		if(grito.equals("Cargar precios de habitaciones")) {
+		String grito = e.getActionCommand();
 			
-
-	
-			panelConsultarHabitaciones.setVisible(false);
-			panelCrearHabitaciones.setVisible(false);
-			panelCargarArchivoHabitaciones.setVisible(false);
-			panelconsultarHabitaciones.setVisible(false);
-			panelCargarMenu.setVisible(false);
-			panelEditarMenu.setVisible(false);
-			panelAsignarPreciosMenu.setVisible(false);
+		if(grito.equals("cargarPH")) {
+			new PanelCargarPreciosHabitaciones(hotel);
 		}
-		
+			
 		else if(grito.equals("ConsultarH")) {
 			new PanelConsultarHabitaciones(hotel, "admin");
-			dispose();
-		    
 		}
+			
+		else if(grito.equals("cargarAH")) {
+			new PanelCargarArchivoHabitaciones(hotel);
+		}
+		dispose();
 		
 	}
 }

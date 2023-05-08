@@ -6,6 +6,8 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -14,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import GUI.ventanaAdministrador;
 import procesamiento.Hotel;
 
 public class PanelCargarPreciosHabitaciones extends JFrame implements ActionListener {
@@ -22,15 +25,14 @@ public class PanelCargarPreciosHabitaciones extends JFrame implements ActionList
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static Hotel hotel;
+	private Hotel hotel;
 
-	public PanelCargarPreciosHabitaciones(  ) {
-		//this.hotel= hotel;
+	public PanelCargarPreciosHabitaciones(Hotel hotel) {
+		this.hotel = hotel;
 		setBounds(100, 100, 800, 600);
 		setTitle("Cargar Precios de habitaciones");
 		setResizable(true);
 		setVisible(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
 		setLayout(new GridLayout(5,1));
@@ -148,11 +150,17 @@ public class PanelCargarPreciosHabitaciones extends JFrame implements ActionList
 		add(panelSur2);
 		
 		pack();
+		
+		 // Evento de cierre
+	     addWindowListener(new WindowAdapter() {
+	     @Override
+	     public void windowClosing(WindowEvent e) {
+	    	 new ventanaAdministrador(hotel);
+	    	 dispose();
+	     }
+	     });
 	}
 	
-	public static void main(String[] args) {
-		PanelCargarPreciosHabitaciones vc = new PanelCargarPreciosHabitaciones();
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
