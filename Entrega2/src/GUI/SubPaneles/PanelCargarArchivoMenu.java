@@ -1,13 +1,14 @@
 package GUI.SubPaneles;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 
 import javax.swing.*;
 
-public class PanelCargarArchivoHabitaciones extends JFrame {
-    public PanelCargarArchivoHabitaciones() {
-        setTitle("PanelCargarArchivoHabitaciones");
+public class PanelCargarArchivoMenu extends JFrame {
+    public PanelCargarArchivoMenu() {
+        setTitle("Cargar Archivo de Menú");
         setSize(800, 200);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,12 +37,12 @@ public class PanelCargarArchivoHabitaciones extends JFrame {
         add(labelArchivoCargado, BorderLayout.SOUTH);
 
         botonCargar.addActionListener(e -> {
-            labelArchivoCargado.setText("Archivo de habitaciones cargado con éxito");
+            labelArchivoCargado.setText("Archivo de menú cargado con éxito");
         });
     }
 
     public static void main(String[] args) {
-        PanelCargarArchivoHabitaciones panel = new PanelCargarArchivoHabitaciones();
+        PanelCargarArchivoMenu panel = new PanelCargarArchivoMenu();
         panel.setVisible(true);
     }
 }
