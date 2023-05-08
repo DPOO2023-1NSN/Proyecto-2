@@ -25,7 +25,7 @@ public class RealizarCheckIn extends JFrame {
         JPanel panelCentro= new JPanel(new FlowLayout());
         JButton checkInButton = new JButton("Realizar Check In");
         
-        checkInButton.setPreferredSize(new Dimension (200,50));
+        checkInButton.setPreferredSize(new Dimension (199,50));
         panelCentro.add(checkInButton);
         
         
