@@ -1,41 +1,35 @@
 package GUI;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import GUI.SubPaneles.PanelCancelarReserva;
+import GUI.SubPaneles.PanelConsultarHabitaciones;
+import GUI.SubPaneles.PanelRegistrarCobros;
+import GUI.SubPaneles.ReservasFrame;
+import procesamiento.Hotel;
+
 import javax.swing.JLabel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 
-public class ventanaEmpleado extends JFrame {
+public class ventanaEmpleado extends JFrame implements ActionListener{
 
+	Hotel hotel;
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ventanaEmpleado frame = new ventanaEmpleado();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public ventanaEmpleado() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public ventanaEmpleado(Hotel hotel) {
+		this.hotel = hotel;
+		
+		setVisible(true);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 977, 706);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -47,15 +41,21 @@ public class ventanaEmpleado extends JFrame {
 		
 		JButton btnNewButton = new JButton("Reservar");
 		btnNewButton.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
+		btnNewButton.addActionListener(this);
+		btnNewButton.setActionCommand("reservar");
 		
 		JButton btnCancelarReserva = new JButton("Cancelar reserva");
 		btnCancelarReserva.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
+		btnCancelarReserva.addActionListener(this);
+		btnCancelarReserva.setActionCommand("cancelar");
 		
 		JButton btnConsultarPagos = new JButton("Consultar pagos");
 		btnConsultarPagos.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
 		
 		JButton btnRegistrarCobros = new JButton("Registrar cobros");
 		btnRegistrarCobros.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
+		btnRegistrarCobros.addActionListener(this);
+		btnRegistrarCobros.setActionCommand("registrar");
 		
 		JButton btnConsultarPagos_1_1 = new JButton("Registrar check in ");
 		btnConsultarPagos_1_1.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
@@ -65,6 +65,9 @@ public class ventanaEmpleado extends JFrame {
 		
 		JButton btnConsultarPagos_1_1_1_1 = new JButton("Consultar habitaciones");
 		btnConsultarPagos_1_1_1_1.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
+		btnConsultarPagos_1_1_1_1.addActionListener(this);
+		btnConsultarPagos_1_1_1_1.setActionCommand("consultar");
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -106,6 +109,29 @@ public class ventanaEmpleado extends JFrame {
 					.addContainerGap(306, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String accion = e.getActionCommand();
+		
+		if (accion.equals("consultar")) {
+			new PanelConsultarHabitaciones(hotel, "empleado");
+		}
+			
+		else if(accion.equals("cancelar")) {
+			new PanelCancelarReserva(hotel);
+		}
+		
+		else if (accion.equals("reservar"))
+			new ReservasFrame(hotel);
+		
+		else if (accion.equals("registrar"))
+			new PanelRegistrarCobros(hotel);
+		
+		dispose();
+		
+		
 	}
 
 }

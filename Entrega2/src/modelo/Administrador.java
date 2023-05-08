@@ -57,5 +57,15 @@ public class Administrador extends Usuario {
 		}
 		
 	}
+	
+	public Habitacion consultarHabitacion(ArrayList<Habitacion> habitaciones, int id) {
+		Habitacion habBuscada = null;
+		for (Habitacion habitacion: habitaciones) {
+			if (habitacion.getId() == id)
+				habBuscada = habitacion;
+		}
+		
+		return habBuscada;
+	}
 
 }

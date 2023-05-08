@@ -5,27 +5,30 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.*;
+
+import GUI.ventanaEmpleado;
+import procesamiento.Hotel;
 
 
 
 public class ReservasFrame extends JFrame {
-    /**
-	 * 
-	 */
+    
 	private static final long serialVersionUID = 1L;
 	private int intUsuarios=0;
 	private int intHabitaciones=0;
+	private Hotel hotel;
 	
-	public ReservasFrame() {
+	public ReservasFrame(Hotel hotel) {
+		this.hotel = hotel;
 		setVisible(true);
-        setTitle("ReservasFrame (REDMINESIONAR)");
+        setTitle("Reservas");
         setSize(700, 500);
         setLocationRelativeTo(null);
         setBounds(100, 100, 700, 500);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
         // Creamos los componentes
         JLabel labelCheckIn = new JLabel("Check in");
@@ -139,13 +142,18 @@ public class ReservasFrame extends JFrame {
         	intHabitaciones+=1;
         	labelAgregadosHabitacionCount.setText(intHabitaciones + "");
         });
+        
+     // Evento de cierre
+     		addWindowListener(new WindowAdapter() {
+                 @Override
+                 public void windowClosing(WindowEvent e) {
+                 	new ventanaEmpleado(hotel);
+         			dispose();
+                 }
+             });
 }
 
 	
 
-	public static void main(String[] args) {
-		ReservasFrame vc = new ReservasFrame();
-		
-	}
 
 }

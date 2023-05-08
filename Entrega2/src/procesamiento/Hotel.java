@@ -23,6 +23,7 @@ import modelo.Estado;
 public class Hotel {
 	private ArrayList <Usuario> listaUsuarios;
 	private Informacion informacion;
+	private Usuario usuarioActual;
 
 
 	public Hotel () throws SAXException, IOException, ParserConfigurationException{
@@ -33,7 +34,7 @@ public class Hotel {
 	
 	//LOGIN Y REGISTRO
 	public int ejecutarLogIn (String nombreUsuario, String contrasenia){
-		Usuario usuarioActual= informacion.getUsuario(nombreUsuario, contrasenia);
+		usuarioActual= informacion.getUsuario(nombreUsuario, contrasenia);
 		
 		if (usuarioActual== null) {
 			return 0;
@@ -87,6 +88,17 @@ public class Hotel {
 	}
 	public void caragarArchivoServicios(String rutaArchivo){
 		//COMPLETAR______________________________________________________
+	}
+	
+	public Habitacion obtenerHabitacion(int id) {
+		Habitacion hab = null;
+		if (usuarioActual instanceof Administrador) {
+			hab = ((Administrador)usuarioActual).consultarHabitacion(informacion.getHabitaciones(), id);
+		}
+		else if (usuarioActual instanceof Empleado) {
+			hab = ((Empleado)usuarioActual).consultarHabitacion(informacion.getHabitaciones(), id);
+		}
+		return hab;
 	}
 
 	//FUNCIONES EMPLEADO
