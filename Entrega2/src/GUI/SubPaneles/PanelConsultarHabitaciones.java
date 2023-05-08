@@ -3,13 +3,11 @@ package GUI.SubPaneles;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -22,6 +20,10 @@ import modelo.Habitacion;
 import procesamiento.Hotel;
 
 public class PanelConsultarHabitaciones extends JFrame implements ActionListener{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Hotel hotel;
 	private String panelActual;
 	
@@ -56,10 +58,10 @@ public class PanelConsultarHabitaciones extends JFrame implements ActionListener
 		add(panelSuperior, BorderLayout.NORTH);
 		
 		crearPanelIzq();
-		add(panelIzq, BorderLayout.WEST);
+		add(panelIzq, BorderLayout.CENTER);
 		
 		crearPanelDerecha();
-		add(panelDerecha, BorderLayout.EAST);
+		//add(panelDerecha, BorderLayout.EAST);
 		
 		crearPanelInferior();
 		add(panelInferior, BorderLayout.SOUTH);

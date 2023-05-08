@@ -7,6 +7,8 @@ import javax.swing.border.EmptyBorder;
 
 import GUI.SubPaneles.PanelCancelarReserva;
 import GUI.SubPaneles.PanelConsultarHabitaciones;
+import GUI.SubPaneles.PanelRegistrarCobros;
+import GUI.SubPaneles.ReservasFrame;
 import procesamiento.Hotel;
 
 import javax.swing.JLabel;
@@ -39,6 +41,8 @@ public class ventanaEmpleado extends JFrame implements ActionListener{
 		
 		JButton btnNewButton = new JButton("Reservar");
 		btnNewButton.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
+		btnNewButton.addActionListener(this);
+		btnNewButton.setActionCommand("reservar");
 		
 		JButton btnCancelarReserva = new JButton("Cancelar reserva");
 		btnCancelarReserva.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
@@ -50,6 +54,8 @@ public class ventanaEmpleado extends JFrame implements ActionListener{
 		
 		JButton btnRegistrarCobros = new JButton("Registrar cobros");
 		btnRegistrarCobros.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
+		btnRegistrarCobros.addActionListener(this);
+		btnRegistrarCobros.setActionCommand("registrar");
 		
 		JButton btnConsultarPagos_1_1 = new JButton("Registrar check in ");
 		btnConsultarPagos_1_1.setFont(new Font("Palatino Linotype", Font.PLAIN, 12));
@@ -109,12 +115,22 @@ public class ventanaEmpleado extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		String accion = e.getActionCommand();
 		
-		if (accion.equals("consultar"))
+		if (accion.equals("consultar")) {
 			new PanelConsultarHabitaciones(hotel, "empleado");
+		}
+			
 		else if(accion.equals("cancelar")) {
 			new PanelCancelarReserva(hotel);
 		}
+		
+		else if (accion.equals("reservar"))
+			new ReservasFrame(hotel);
+		
+		else if (accion.equals("registrar"))
+			new PanelRegistrarCobros(hotel);
+		
 		dispose();
+		
 		
 	}
 

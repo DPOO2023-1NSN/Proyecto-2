@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.border.TitledBorder;
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -35,7 +36,7 @@ public class inicio extends JFrame implements ActionListener{
 	private JLabel tituloJLabel;
 	private JTextField usuarioField;
 	private JLabel usuarioJLabel;
-	private JTextField contraseñaField;
+	private JPasswordField contraseñaField;
 	private JLabel contraseñaJLabel;
 	private JButton ingresarJButton;
 	private JButton crearJButton;
@@ -92,7 +93,7 @@ public class inicio extends JFrame implements ActionListener{
 		contraseñaJLabel = new JLabel("Contraseña");
 		contraseñaJLabel.setPreferredSize(new Dimension(70,20));
 		
-		contraseñaField = new JTextField();
+		contraseñaField = new JPasswordField();
 		contraseñaField.setPreferredSize(new Dimension(150,20));
 		
 		ingresarJButton = new JButton("Ingresar");
