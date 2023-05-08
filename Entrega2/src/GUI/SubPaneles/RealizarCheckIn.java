@@ -3,16 +3,25 @@ package GUI.SubPaneles;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.*;
 
+import GUI.ventanaAdministrador;
+import GUI.ventanaEmpleado;
+import procesamiento.Hotel;
+
 public class RealizarCheckIn extends JFrame {
 
-    public RealizarCheckIn() {
+	private Hotel hotel;
+	
+    public RealizarCheckIn(Hotel hotel) {
+    	this.hotel = hotel;
         // Configuración del JFrame
         setTitle("Realizar Check In");
         setSize(400, 300);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
         
         // Creación del sub panel superior
         JPanel subPanel = new JPanel(new FlowLayout());
@@ -41,11 +50,16 @@ public class RealizarCheckIn extends JFrame {
         checkInButton.addActionListener(e -> {
         	anunciosLabel.setText("Check In realizado con éxito");
         });
+        
+     // Evento de cierre
+        addWindowListener(new WindowAdapter() {
+        @Override
+        public void windowClosing(WindowEvent e) {
+       	 new ventanaEmpleado(hotel);
+       	 dispose();
+        }
+        });
     }
 
-    public static void main(String[] args) {
-        RealizarCheckIn ventana = new RealizarCheckIn();
-        ventana.setVisible(true);
-    }
 }
 

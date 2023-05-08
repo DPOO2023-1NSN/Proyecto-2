@@ -128,7 +128,6 @@ public class ventanaEmpleado extends JFrame implements ActionListener{
 		else if(accion.equals("cancelar")) {
 			new PanelCancelarReserva(hotel);
 		}
-		
 		else if (accion.equals("reservar"))
 			new ReservasFrame(hotel);
 		
@@ -136,9 +135,9 @@ public class ventanaEmpleado extends JFrame implements ActionListener{
 			new PanelRegistrarCobros(hotel);
 		
 		else if (accion.equals("checkIn"))
-			new RealizarCheckIn();
+			new RealizarCheckIn(hotel);
 		else if (accion.equals("checkOut"))
-			new RealizarCheckOut();
+			new RealizarCheckOut(hotel);
 		
 		dispose();
 		
