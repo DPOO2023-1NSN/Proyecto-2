@@ -17,11 +17,13 @@ import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 import GUI.ventanaAdministrador;
+import GUI.ventanaEmpleado;
 import modelo.Habitacion;
 import procesamiento.Hotel;
 
 public class PanelConsultarHabitaciones extends JFrame implements ActionListener{
 	private Hotel hotel;
+	private String panelActual;
 	
 	private JPanel panelSuperior;
 	private JPanel panelIzq;
@@ -40,8 +42,10 @@ public class PanelConsultarHabitaciones extends JFrame implements ActionListener
 	private JTextField txtVista;
 	private JTextField txtCocina;
 	
-	public PanelConsultarHabitaciones(Hotel hotel) {
+	public PanelConsultarHabitaciones(Hotel hotel, String panelActual) {
 		this.hotel = hotel;
+		this.panelActual = panelActual;
+		
 		// Configuracion del panel
 		setBounds(100, 100, 956, 705);
 		setLayout(new BorderLayout());
@@ -181,7 +185,10 @@ public class PanelConsultarHabitaciones extends JFrame implements ActionListener
 		}
 		
 		else if(accion.equals("volver")) {
-			new ventanaAdministrador(hotel);
+			if (panelActual.equals("admin"))
+				new ventanaAdministrador(hotel);
+			else if (panelActual.equals("empleado"))
+				new ventanaEmpleado(hotel);
 			dispose();
 		}
 			

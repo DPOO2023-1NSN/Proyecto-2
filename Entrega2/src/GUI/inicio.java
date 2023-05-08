@@ -163,7 +163,7 @@ public class inicio extends JFrame implements ActionListener{
 				new ventanaAdministrador(hotel);
 			}
 			else if (tipoUsuario==2){
-				vEmpleado.main(null);
+				new ventanaEmpleado(hotel);
 			}
 			else {
 				vUsuario.main(null);

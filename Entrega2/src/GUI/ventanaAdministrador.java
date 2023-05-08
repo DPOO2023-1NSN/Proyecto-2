@@ -182,7 +182,7 @@ public class ventanaAdministrador extends JFrame implements ActionListener{
 		}
 		
 		else if(grito.equals("ConsultarH")) {
-			new PanelConsultarHabitaciones(hotel);
+			new PanelConsultarHabitaciones(hotel, "admin");
 			dispose();
 		    
 		}
